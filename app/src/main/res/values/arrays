@@ -1,6 +1,0 @@
-<resources>
-    <string-array name="feedfood"/>
-        <item>母奶</item>
-        <item>配方奶</item>
-        <item>副食品</item>
-</resources>
