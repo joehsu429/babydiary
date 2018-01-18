@@ -18,4 +18,13 @@ public class Main2Activity extends AppCompatActivity {
         Intent it = new Intent(this,Main6Activity.class);
         startActivity(it);
     }
+    public void click6(View v)
+    {
+        finish();
+    }
+    public void click7(View v)
+    {
+        Intent it = new Intent(this,Main7Activity.class);
+        startActivity(it);
+    }
 }
