@@ -3,10 +3,7 @@ package com.example.student.babydiary;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -40,7 +37,7 @@ public class FeedActivity extends AppCompatActivity {
         mDay=c.get(Calendar.DAY_OF_MONTH);
         mHour=c.get(Calendar.HOUR_OF_DAY);
         mMinute=c.get(Calendar.MINUTE);
-        tv6 = (TextView) findViewById(R.id.textView6);
+        tv6 = (TextView) findViewById(R.id.sleep_showtime);
         updateDisplay();
         dp = new DatePicker(FeedActivity.this);
         dp.init(mYear,mMonth,mDay, new DatePicker.OnDateChangedListener() {

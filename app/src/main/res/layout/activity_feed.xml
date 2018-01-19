@@ -7,15 +7,15 @@
     tools:context="com.example.student.babydiary.FeedActivity">
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/inputMK"
         android:layout_width="160dp"
         android:layout_height="42dp"
         android:layout_marginStart="8dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="100"
-        app:layout_constraintStart_toEndOf="@+id/textView11"
-        app:layout_constraintTop_toTopOf="@+id/textView11" />
+        app:layout_constraintStart_toEndOf="@+id/feed_mothermilk"
+        app:layout_constraintTop_toTopOf="@+id/feed_mothermilk" />
 
     <TextView
         android:id="@+id/textView4"
@@ -25,11 +25,11 @@
         android:layout_marginTop="8dp"
         android:text="cc"
         android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/editText3"
-        app:layout_constraintTop_toTopOf="@+id/editText3" />
+        app:layout_constraintStart_toEndOf="@+id/inputMK"
+        app:layout_constraintTop_toTopOf="@+id/inputMK" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/feed_header"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -44,7 +44,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/savefilebt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"
@@ -55,7 +55,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/sleep_showtime"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -65,10 +65,10 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/feed_header" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/feed_formula"
         android:layout_width="130dp"
         android:layout_height="39dp"
         android:layout_marginStart="16dp"
@@ -78,10 +78,10 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+        app:layout_constraintTop_toBottomOf="@+id/feed_mothermilk" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/inputformula"
         android:layout_width="160dp"
         android:layout_height="43dp"
         android:layout_marginStart="12dp"
@@ -89,8 +89,8 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="100"
-        app:layout_constraintStart_toEndOf="@+id/textView7"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+        app:layout_constraintStart_toEndOf="@+id/feed_formula"
+        app:layout_constraintTop_toBottomOf="@+id/inputMK" />
 
     <TextView
         android:id="@+id/textView8"
@@ -100,11 +100,11 @@
         android:layout_marginTop="24dp"
         android:text="cc"
         android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/editText4"
+        app:layout_constraintStart_toEndOf="@+id/inputformula"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/feed_Weaning"
         android:layout_width="130dp"
         android:layout_height="44dp"
         android:layout_marginStart="16dp"
@@ -113,10 +113,10 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintTop_toBottomOf="@+id/feed_formula" />
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/inputWeaning"
         android:layout_width="160dp"
         android:layout_height="43dp"
         android:layout_marginStart="8dp"
@@ -124,8 +124,8 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="100"
-        app:layout_constraintStart_toEndOf="@+id/textView9"
-        app:layout_constraintTop_toBottomOf="@+id/editText4" />
+        app:layout_constraintStart_toEndOf="@+id/feed_Weaning"
+        app:layout_constraintTop_toBottomOf="@+id/inputformula" />
 
     <TextView
         android:id="@+id/textView10"
@@ -135,11 +135,11 @@
         android:layout_marginTop="24dp"
         android:text="cc"
         android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/editText5"
+        app:layout_constraintStart_toEndOf="@+id/inputWeaning"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/feed_mothermilk"
         android:layout_width="130dp"
         android:layout_height="43dp"
         android:layout_marginStart="16dp"
@@ -148,17 +148,17 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/sleep_showtime" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/alarm_clockbt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="設定鬧鐘"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        app:layout_constraintTop_toBottomOf="@+id/feed_Weaning" />
 
 
 </android.support.constraint.ConstraintLayout>

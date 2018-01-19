@@ -15,10 +15,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-        <activity android:name=".FeedActivity" />
-        <activity android:name=".sleepActivity" />
+        <activity android:name=".FeedActivity" ></activity>
+
+        <activity android:name=".sleepActivity"></activity>
         <activity android:name=".growActivity">
 
         </activity>

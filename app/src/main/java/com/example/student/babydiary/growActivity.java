@@ -30,7 +30,7 @@ public class growActivity extends AppCompatActivity {
         mDay=c.get(Calendar.DAY_OF_MONTH);
         mHour=c.get(Calendar.HOUR_OF_DAY);
         mMinute=c.get(Calendar.MINUTE);
-        tv6 = (TextView) findViewById(R.id.textView6);
+        tv6 = (TextView) findViewById(R.id.grow_showtime);
         updateDisplay();
         dp = new DatePicker(growActivity.this);
         dp.init(mYear,mMonth,mDay, new DatePicker.OnDateChangedListener() {
