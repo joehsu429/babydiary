@@ -2,18 +2,13 @@ package com.example.student.babydiary;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
 import java.util.Calendar;
 
-public class FeedActivity extends AppCompatActivity {
-    //Spinner spinner;
+public class sleepActivity extends AppCompatActivity {
     TextView tv6;
     /*声明日期及时间变量*/
     private int mYear;
@@ -27,12 +22,7 @@ public class FeedActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_feed);
-        //spinner = findViewById(R.id.spinner);
-       // ArrayAdapter<CharSequence>  adapter = ArrayAdapter.createFromResource(FeedActivity.this,
-              //  R.array.feedfood,android.R.layout.simple_dropdown_item_1line);
-        //spinner.setAdapter(adapter);
-
+        setContentView(R.layout.activity_sleep2);
         /*取得目前日期与时间*/
         Calendar c=Calendar.getInstance();
         mYear=c.get(Calendar.YEAR);
@@ -42,7 +32,7 @@ public class FeedActivity extends AppCompatActivity {
         mMinute=c.get(Calendar.MINUTE);
         tv6 = (TextView) findViewById(R.id.textView6);
         updateDisplay();
-        dp = new DatePicker(FeedActivity.this);
+        dp = new DatePicker(sleepActivity.this);
         dp.init(mYear,mMonth,mDay, new DatePicker.OnDateChangedListener() {
             @Override
             public void onDateChanged(DatePicker datePicker, int  year, int monthOfYear, int dayOfMonth) {
@@ -53,9 +43,8 @@ public class FeedActivity extends AppCompatActivity {
                 updateDisplay();
             }
         });
-
-        /*取得TimePicker对象，并设置为24小时制显示*/
-        tp = new TimePicker(FeedActivity.this);
+         /*取得TimePicker对象，并设置为24小时制显示*/
+        tp = new TimePicker(sleepActivity.this);
         tp.setIs24HourView(true);
         /*setOnTimeChangedListener，并重写onTimeChanged event*/
         tp.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
@@ -86,11 +75,5 @@ public class FeedActivity extends AppCompatActivity {
         String s=""+x;
         if(s.length()==1) s="0"+s;
         return s;
-    }
-
-
-    public void clickadd(View v)
-    {
-
     }
 }
