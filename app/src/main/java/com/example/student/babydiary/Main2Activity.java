@@ -13,6 +13,21 @@ public class Main2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
 
     }
+    public void click2(View v)
+    {
+        Intent it = new Intent(this,FeedActivity.class);
+        startActivity(it);
+    }
+    public void click3(View v)
+    {
+        Intent it = new Intent(this,sleepActivity.class);
+        startActivity(it);
+    }
+    public void click4(View v)
+    {
+        Intent it = new Intent(this,growActivity.class);
+        startActivity(it);
+    }
     public void click5(View v)
     {
         Intent it = new Intent(this,Main6Activity.class);
