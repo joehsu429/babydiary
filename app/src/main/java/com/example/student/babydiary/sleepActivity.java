@@ -16,7 +16,7 @@ public class sleepActivity extends AppCompatActivity {
     private int mDay;
     private int mHour;
     private int mMinute;
-    /*声明对象变量*/
+    /*聲明声明对象变量*/
     TimePicker tp;
     DatePicker dp;
     @Override
