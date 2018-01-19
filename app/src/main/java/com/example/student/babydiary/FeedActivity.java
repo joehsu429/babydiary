@@ -28,10 +28,10 @@ public class FeedActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed);
-        spinner = findViewById(R.id.spinner);
-        ArrayAdapter<CharSequence>  adapter = ArrayAdapter.createFromResource(FeedActivity.this,
-                R.array.feedfood,android.R.layout.simple_dropdown_item_1line);
-        spinner.setAdapter(adapter);
+        //spinner = findViewById(R.id.spinner);
+       // ArrayAdapter<CharSequence>  adapter = ArrayAdapter.createFromResource(FeedActivity.this,
+              //  R.array.feedfood,android.R.layout.simple_dropdown_item_1line);
+        //spinner.setAdapter(adapter);
 
         /*取得目前日期与时间*/
         Calendar c=Calendar.getInstance();
