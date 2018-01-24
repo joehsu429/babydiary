@@ -4,7 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://C:\java\babydiary\babydiary\baby diary.iml" filepath="C:\java\babydiary\babydiary\baby diary.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/babydiary.iml" filepath="$PROJECT_DIR$/.idea/babydiary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/babydiary.iml" filepath="$PROJECT_DIR$/babydiary.iml" />
+      <module fileurl="file://C:\androidproject\babydiary\.idea\babydiary.iml" filepath="C:\androidproject\babydiary\.idea\babydiary.iml" />
     </modules>
   </component>
 </project>

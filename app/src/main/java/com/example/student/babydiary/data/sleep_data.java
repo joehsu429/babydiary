@@ -1,4 +1,4 @@
-package com.example.student.babydiary;
+package com.example.student.babydiary.data;
 
 /**
  * Created by Student on 2018/1/23.

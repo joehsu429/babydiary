@@ -1,4 +1,4 @@
-package com.example.student.babydiary;
+package com.example.student.babydiary.data;
 
 import java.util.ArrayList;
 

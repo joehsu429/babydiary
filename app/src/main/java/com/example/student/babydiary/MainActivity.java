@@ -2,15 +2,18 @@ package com.example.student.babydiary;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.example.student.babydiary.data.Personal_Data;
+import com.example.student.babydiary.data.Personal_DataDAO;
 
 import java.util.Calendar;
 
@@ -20,10 +23,16 @@ public class MainActivity extends AppCompatActivity{
     EditText ed,ed2;
     Spinner sp;
     Calendar c;
+    RadioGroup radioGroup_sex;
+    int gender;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //宣告radioGrop
+        radioGroup_sex = (RadioGroup)findViewById(R.id.radioGroup_sex);
+
+        ed = (EditText)findViewById(R.id.editText_name);
         tv = new TextView(this);
         tv2 = new TextView(this);
         tv3 = new TextView(this);
@@ -66,12 +75,48 @@ public class MainActivity extends AppCompatActivity{
 
             }
         });
+
+
+        //radiobutton確認選項
+
+
+        radioGroup_sex.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+               @Override
+               public void onCheckedChanged(RadioGroup radioGroup, int checkedId ) {
+                   switch (checkedId)
+                   {
+                       case R.id.radioButton_boy:
+                           gender = 1;
+                           //Toast.makeText(MainActivity.this,"boy" + gender,Toast.LENGTH_SHORT).show();
+                            break;
+                       case R.id.radioButton_girl:
+                           gender = 0;
+                           //Toast.makeText(MainActivity.this,"girl" + gender,Toast.LENGTH_SHORT).show();
+                           break;
+                   }
+               }
+           });
+
     }
 
+    //按確定會把寶寶資料存到DB
     public void click1(View v)
     {
         Intent it = new Intent(this,Main2Activity.class);//跳第2頁
         startActivity(it);
+
+        Personal_DataDAO dao = new Personal_DataDAO(MainActivity.this);
+
+        //ID,姓名,性別代號,生日
+        int personalid = 1;
+        Personal_Data personal_data = new Personal_Data(personalid++,ed.getText().toString(),gender,ed2.getText().toString());
+        //加入資料庫
+        dao.addbaby(personal_data);
+        //ed2 Birthday
+        //ed 姓名
+        //Personal_DataDAO dao = new Personal_DataDAO(MainActivity.this);
+        //Personal_Data personal_data = new Personal_Data(111,"CHANG",1,"2016/05/9");
+        //dao.addbaby(personal_data);
     }
 
 }
