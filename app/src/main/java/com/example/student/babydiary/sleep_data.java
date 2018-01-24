@@ -7,17 +7,19 @@ package com.example.student.babydiary;
 public class sleep_data {
     int sleepnum;
     double sleeplength;
-    int personid;
-//    date recordtime;
-//    time startsleeptime;
-//    time endsleeptime;
+    String recordtime;
+    String startsleeptime;
+    String endsleeptime;
 
 
-    public sleep_data(int sleepnum, double sleeplength, int personid)
+    public sleep_data(int sleepnum, double sleeplength,String recordtime,
+            String startsleeptime, String endsleeptime)
     {
         this.sleepnum=sleepnum;
         this.sleeplength=sleeplength;
-        this.personid=personid;
+        this.recordtime=recordtime;
+        this.startsleeptime=startsleeptime;
+        this.endsleeptime=endsleeptime;
     }
 
 }

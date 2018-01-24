@@ -9,14 +9,13 @@ public class grow_data {
     double tall;
     double weight;
     double headlegth;
-    int personid;
-//    date recordtime;
-    public grow_data(int grownum, double tall, double weight, double headlegth, int personid)
+    String recordtime;
+    public grow_data(int grownum, double tall, double weight, double headlegth,String recordtime)
     {
         this.grownum=grownum;
         this.tall=tall;
         this.weight=weight;
         this.headlegth=headlegth;
-        this.personid=personid;
+        this.recordtime = recordtime;
     }
 }

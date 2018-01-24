@@ -1,34 +1,58 @@
 package com.example.student.babydiary;
 
-import java.util.ArrayList;
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 
 /**
- * Created by Student on 2018/1/23.
+ * Created by Student on 2018/1/24.
  */
 
-public class sleep_dataDAO implements sleepDAO {
-    @Override
-    public boolean add(sleep_data s) {
-        return false;
+public class sleep_dataDAO {
+    Context context;
+    SQLiteDatabase db;
+
+
+    public sleep_dataDAO(Context context)
+    {
+        this.context = context;
+        MyDBHelper myDBHelper = new MyDBHelper(context);
+        db = myDBHelper.getWritableDatabase();
     }
 
-    @Override
-    public ArrayList<sleep_data> getList() {
-        return null;
+    //新增睡覺時間
+    public boolean addsleep(sleep_data s)
+    {
+        ContentValues cv = new ContentValues();
+
+        cv.put("_sleepnum",s.sleepnum);
+        cv.put("recordtime",s.recordtime);
+        cv.put("sleeplength",s.sleeplength);
+        cv.put("startsleeptime",s.startsleeptime);
+        cv.put("endsleeptime",s.endsleeptime);
+        db.insert("sleep_data",null,cv);
+        db.close();
+        return true;
     }
 
-    @Override
-    public sleep_data getsleep_data(int id) {
-        return null;
+    //修改睡覺時間
+    public boolean altersleep(sleep_data  s)
+    {
+        ContentValues cv = new ContentValues();
+        cv.put("recordtime",s.recordtime);
+        cv.put("sleeplength",s.sleeplength);
+        cv.put("startsleeptime",s.startsleeptime);
+        cv.put("endsleeptime",s.endsleeptime);
+        db.update("sleep_data",cv,"_sleepnum=?",
+                new String[]{String.valueOf(s.sleepnum)});
+        return true;
     }
 
-    @Override
-    public boolean update(sleep_data s) {
-        return false;
-    }
-
-    @Override
-    public boolean delete(int id) {
-        return false;
+    //刪除睡覺資料
+    public boolean deletesleep(int  sleepnum)
+    {
+        db.delete("sleep_data","_sleepnum=?",new String[]{String.valueOf(sleepnum)});
+        return true;
     }
 }
+
