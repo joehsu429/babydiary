@@ -28,7 +28,7 @@ public class FeedActivity extends AppCompatActivity {
     EditText inputMK;
     EditText inputformula;
     EditText inputWeaning;
-    int feednum = 0;
+    //int feednum = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,9 +98,9 @@ public class FeedActivity extends AppCompatActivity {
     {
 
 
-        feednum = feednum + 1;
+        //feednum = feednum + 1;
 
-        Feed_Data feed_data = new Feed_Data(feednum,tv6.getText().toString(),Integer.valueOf(inputMK.getText().toString()),
+        Feed_Data feed_data = new Feed_Data(tv6.getText().toString(),Integer.valueOf(inputMK.getText().toString()),
                 Integer.valueOf(inputformula.getText().toString()),Integer.valueOf(inputWeaning.getText().toString()));
 
         Feed_DataDAO dao = new Feed_DataDAO(FeedActivity.this);

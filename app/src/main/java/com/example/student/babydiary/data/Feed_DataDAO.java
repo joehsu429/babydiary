@@ -2,7 +2,10 @@ package com.example.student.babydiary.data;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
+import java.util.ArrayList;
 
 /**
  * Created by user on 2018/1/24.
@@ -23,7 +26,7 @@ public class Feed_DataDAO {
     {
         ContentValues cv = new ContentValues();
 
-        cv.put("_feednum",s.feednum);
+        //cv.put("_feednum",s.feednum);
         cv.put("recordtime",s.recordtime);
         cv.put("mothermilk",s.mothermilk);
         cv.put("formula",s.formula);
@@ -32,8 +35,28 @@ public class Feed_DataDAO {
         db.close();
         return true;
     }
+    //查詢feedDB 資料
+    //讀出資料庫用不同的class Feed_DataOutout 因為欄位不一樣
+    public ArrayList<Feed_DataOutout> getList() {
+        ArrayList<Feed_DataOutout> mylist = new ArrayList<>();
+        Cursor c = db.query("feed_data", new String[] {"_feednum", "recordtime", "mothermilk","formula","weaning"}, null, null, null, null, null);
+        if (c.moveToFirst())
+        {
+            Feed_DataOutout s1 = new Feed_DataOutout(c.getInt(0),c.getString(1),c.getInt(2),c.getInt(3),c.getInt(4));
+
+            mylist.add(s1);
+            while(c.moveToNext())
+            {
+                Feed_DataOutout s = new Feed_DataOutout(c.getInt(0),c.getString(1),c.getInt(2),c.getInt(3),c.getInt(4));
+                mylist.add(s);
+            }
+        }
+        return mylist;
+    }
+
 
     //修改飲食資料
+    /*
     public boolean alterfeed(Feed_Data  s)
     {
         ContentValues cv = new ContentValues();
@@ -46,11 +69,16 @@ public class Feed_DataDAO {
                 new String[]{String.valueOf(s.feednum)});
         return true;
     }
-
+    */
+    /*
     //刪除飲食資料
     public boolean deletefeed(int  feednum)
     {
         db.delete("feed_data","_feednum=?",new String[]{String.valueOf(feednum)});
         return true;
     }
+    */
+
+
+
 }
