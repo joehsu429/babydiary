@@ -4,8 +4,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
+
+import com.example.student.babydiary.data.Feed_Data;
+import com.example.student.babydiary.data.Feed_DataDAO;
 
 import java.util.Calendar;
 
@@ -21,14 +25,18 @@ public class FeedActivity extends AppCompatActivity {
     /*声明对象变量*/
     TimePicker tp;
     DatePicker dp;
+    EditText inputMK;
+    EditText inputformula;
+    EditText inputWeaning;
+    int feednum = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed);
-        //spinner = findViewById(R.id.spinner);
-        // ArrayAdapter<CharSequence>  adapter = ArrayAdapter.createFromResource(FeedActivity.this,
-        //  R.array.feedfood,android.R.layout.simple_dropdown_item_1line);
-        //spinner.setAdapter(adapter);
+        inputMK = (EditText)findViewById(R.id.inputMK);
+        inputformula = (EditText)findViewById(R.id.inputformula);
+        inputWeaning = (EditText)findViewById(R.id.inputWeaning);
 
         /*取得目前日期与时间*/
         Calendar c=Calendar.getInstance();
@@ -89,5 +97,13 @@ public class FeedActivity extends AppCompatActivity {
     public void clickadd(View v)
     {
 
+
+        feednum = feednum + 1;
+
+        Feed_Data feed_data = new Feed_Data(feednum,tv6.getText().toString(),Integer.valueOf(inputMK.getText().toString()),
+                Integer.valueOf(inputformula.getText().toString()),Integer.valueOf(inputWeaning.getText().toString()));
+
+        Feed_DataDAO dao = new Feed_DataDAO(FeedActivity.this);
+        dao.addfeed(feed_data);
     }
 }
