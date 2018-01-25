@@ -1,10 +1,12 @@
 package com.example.student.babydiary;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -14,8 +16,9 @@ import com.example.student.babydiary.data.Feed_DataDAO;
 public class Main7Activity extends AppCompatActivity {
     ListView listView;
     Myadapter adapter;
-    Feed_DataDAO dao;
+
     TextView settime,setcontext;
+    public static Feed_DataDAO dao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +28,24 @@ public class Main7Activity extends AppCompatActivity {
         dao = new Feed_DataDAO(Main7Activity.this);
         adapter = new Myadapter();
         listView.setAdapter(adapter);
+        //讓listview item可以被點選,然後跳到修改的那一頁
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent it = new Intent(Main7Activity.this,edfeedActivity.class);
+                //用putExtra把資料送出到edfeedactivity
+                it.putExtra("feednum",dao.getList().get(i).feednum);
+                startActivity(it);
+            }
+        });
+
+    }
 
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        adapter.notifyDataSetChanged();
     }
 
     public String setfeedcpntext(int i)

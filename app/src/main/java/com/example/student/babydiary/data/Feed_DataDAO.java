@@ -55,13 +55,27 @@ public class Feed_DataDAO {
         return mylist;
     }
 
+    //找出一筆feed的資料
+    public Feed_DataOutout getfeed(int feednum)
+    {
+        Cursor c = db.query("feed_data",new String[] {"_feednum", "date","time", "mothermilk","formula","weaning"},"_feednum=?",
+                new String[] {String.valueOf(feednum)},null,null,null);
+        if (c.moveToFirst())
+        {
+            Feed_DataOutout s = new Feed_DataOutout(c.getInt(0),c.getString(1),c.getString(2),c.getInt(3),c.getInt(4),c.getInt(5));
+            return s;
+        }
+        return null;
+    }
+
 
     //修改飲食資料
-    /*
-    public boolean alterfeed(Feed_Data  s)
+
+    public boolean alterfeed(Feed_DataOutout s)
     {
         ContentValues cv = new ContentValues();
-        cv.put("recordtime",s.recordtime);
+        cv.put("date",s.date);
+        cv.put("time",s.time);
         cv.put("mothermilk",s.mothermilk);
         cv.put("formula",s.formula);
         cv.put("weaning",s.weaning);
@@ -70,15 +84,15 @@ public class Feed_DataDAO {
                 new String[]{String.valueOf(s.feednum)});
         return true;
     }
-    */
-    /*
+
+
     //刪除飲食資料
     public boolean deletefeed(int  feednum)
     {
         db.delete("feed_data","_feednum=?",new String[]{String.valueOf(feednum)});
         return true;
     }
-    */
+
 
 
 
