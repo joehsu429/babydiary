@@ -5,15 +5,17 @@ package com.example.student.babydiary.data;
  */
 
 public class Feed_Data {
-    //int feednum;
-    String recordtime;
-    int mothermilk;
-    int formula;
-    int weaning;
-    public  Feed_Data(String recordtime, int mothermilk, int formula, int weaning)
+    //public int feednum;//輸入資料庫的資料不要號碼
+    public String date;//日期
+    public String time;//時間
+    public int mothermilk;
+    public int formula;
+    public int weaning;
+    public  Feed_Data(String date,String time, int mothermilk, int formula, int weaning)
     {
-        //this.feednum = feednum;
-        this.recordtime = recordtime;
+
+        this.time = time;
+        this.date = date;
         this.mothermilk = mothermilk;
         this.formula = formula;
         this.weaning = weaning;

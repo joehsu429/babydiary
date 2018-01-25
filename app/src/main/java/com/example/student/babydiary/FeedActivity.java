@@ -2,6 +2,7 @@ package com.example.student.babydiary;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -96,11 +97,19 @@ public class FeedActivity extends AppCompatActivity {
 
     public void clickadd(View v)
     {
+        //日期和時間的格式
+        String date;
+        String time;
+        date = new StringBuilder().append(mYear).append("/")
+                .append(format(mMonth + 1)).append("/")
+                .append(format(mDay)).toString();
+        time = new StringBuilder().append(format(mHour)).append(":")
+                .append(format(mMinute)).toString();
 
 
         //feednum = feednum + 1;
 
-        Feed_Data feed_data = new Feed_Data(tv6.getText().toString(),Integer.valueOf(inputMK.getText().toString()),
+        Feed_Data feed_data = new Feed_Data(date,time ,Integer.valueOf(inputMK.getText().toString()),
                 Integer.valueOf(inputformula.getText().toString()),Integer.valueOf(inputWeaning.getText().toString()));
 
         Feed_DataDAO dao = new Feed_DataDAO(FeedActivity.this);

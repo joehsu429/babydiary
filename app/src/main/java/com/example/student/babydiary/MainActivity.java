@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -12,9 +13,12 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.student.babydiary.data.Feed_DataDAO;
+import com.example.student.babydiary.data.Feed_DataOutout;
 import com.example.student.babydiary.data.Personal_Data;
 import com.example.student.babydiary.data.Personal_DataDAO;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 
@@ -29,6 +33,15 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Feed_DataDAO feed_dataDAO = new Feed_DataDAO(MainActivity.this);
+        ArrayList<Feed_DataOutout> s;
+        s = feed_dataDAO.getList();
+        for (int i = 0;i < s.size();i++)
+        {
+            Log.d("DDDDMMMMM",s.get(i).feednum + s.get(i).date +" " + s.get(i).time);
+        }
+
+
         //宣告radioGrop
         radioGroup_sex = (RadioGroup)findViewById(R.id.radioGroup_sex);
 
@@ -98,6 +111,10 @@ public class MainActivity extends AppCompatActivity{
            });
 
     }
+
+
+
+
 
     //按確定會把寶寶資料存到DB
     public void click1(View v)

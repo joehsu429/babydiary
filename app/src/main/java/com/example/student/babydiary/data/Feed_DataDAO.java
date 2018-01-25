@@ -26,8 +26,9 @@ public class Feed_DataDAO {
     {
         ContentValues cv = new ContentValues();
 
-        //cv.put("_feednum",s.feednum);
-        cv.put("recordtime",s.recordtime);
+        //cv.put("_feednum",s.feednum);//輸入資料庫的資料不要號碼
+        cv.put("date",s.date);
+        cv.put("time",s.time);
         cv.put("mothermilk",s.mothermilk);
         cv.put("formula",s.formula);
         cv.put("weaning",s.weaning);
@@ -39,15 +40,15 @@ public class Feed_DataDAO {
     //讀出資料庫用不同的class Feed_DataOutout 因為欄位不一樣
     public ArrayList<Feed_DataOutout> getList() {
         ArrayList<Feed_DataOutout> mylist = new ArrayList<>();
-        Cursor c = db.query("feed_data", new String[] {"_feednum", "recordtime", "mothermilk","formula","weaning"}, null, null, null, null, null);
+        Cursor c = db.query("feed_data", new String[] {"_feednum", "date","time", "mothermilk","formula","weaning"}, null, null, null, null, null);
         if (c.moveToFirst())
         {
-            Feed_DataOutout s1 = new Feed_DataOutout(c.getInt(0),c.getString(1),c.getInt(2),c.getInt(3),c.getInt(4));
+            Feed_DataOutout s1 = new Feed_DataOutout(c.getInt(0),c.getString(1),c.getString(2),c.getInt(3),c.getInt(4),c.getInt(5));
 
             mylist.add(s1);
             while(c.moveToNext())
             {
-                Feed_DataOutout s = new Feed_DataOutout(c.getInt(0),c.getString(1),c.getInt(2),c.getInt(3),c.getInt(4));
+                Feed_DataOutout s = new Feed_DataOutout(c.getInt(0),c.getString(1),c.getString(2),c.getInt(3),c.getInt(4),c.getInt(5));
                 mylist.add(s);
             }
         }
