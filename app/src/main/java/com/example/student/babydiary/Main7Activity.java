@@ -11,31 +11,44 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.student.babydiary.data.AlldataDAO;
 import com.example.student.babydiary.data.Feed_DataDAO;
+import com.example.student.babydiary.data.Grow_DataDAO;
 
 public class Main7Activity extends AppCompatActivity {
     ListView listView;
     Myadapter adapter;
 
     TextView settime,setcontext;
-    public static Feed_DataDAO dao;
+    public static AlldataDAO dao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main7);
         listView = (ListView)findViewById(R.id.listView);
-        dao = new Feed_DataDAO(Main7Activity.this);
+        //設定dao看資料是哪一張表
+        dao = new AlldataDAO(Main7Activity.this);
         adapter = new Myadapter();
         listView.setAdapter(adapter);
         //讓listview item可以被點選,然後跳到修改的那一頁
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent it = new Intent(Main7Activity.this,edfeedActivity.class);
-                //用putExtra把資料送出到edfeedactivity
-                it.putExtra("feednum",dao.getList().get(i).feednum);
-                startActivity(it);
+                if (dao.getList().get(i).addtype == 1)
+                {
+                    Intent it = new Intent(Main7Activity.this,edfeedActivity.class);
+                    //用putExtra把資料送出到edfeedactivity
+                    it.putExtra("feednum",dao.getList().get(i).id);
+                    startActivity(it);
+                }
+                else if (dao.getList().get(i).addtype == 2)
+                {
+                    Intent it = new Intent(Main7Activity.this,edgrowActivity.class);
+                    startActivity(it);
+                }
+
+
             }
         });
 
@@ -48,12 +61,24 @@ public class Main7Activity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
-    public String setfeedcpntext(int i)
+    //設定feed的顯示內容
+    public String setfeedcontext(int i)
     {
         String contextstr;
         contextstr = "母奶 " + dao.getList().get(i).mothermilk + "CC" + "\n" +
                 "配方奶 " + dao.getList().get(i).formula +  "CC" + "\n" +
                 "副食品 " + dao.getList().get(i).weaning +  "CC";
+        return contextstr;
+    }
+
+
+    //設定grow的顯示內容
+    public String setgrowcontext(int i)
+    {
+        String contextstr;
+        contextstr = "身高 " + dao.getList().get(i).tall + "公分" + "\n" +
+                "體重 " + dao.getList().get(i).weight +  "公斤" + "\n" +
+                "頭圍 " + dao.getList().get(i).headlength +  "公分";
         return contextstr;
     }
 
@@ -86,7 +111,14 @@ public class Main7Activity extends AppCompatActivity {
             setcontext = v.findViewById(R.id.setcontext);
 
             settime.setText(String.valueOf(dao.getList().get(i).time));
-            setcontext.setText(setfeedcpntext(i));
+            if (dao.getList().get(i).addtype == 1)
+            {
+                setcontext.setText(setfeedcontext(i));
+            }
+            else if (dao.getList().get(i).addtype == 2)
+            {
+                setcontext.setText(setgrowcontext(i));
+            }
 
 
             return v;

@@ -8,10 +8,11 @@ public class Feed_Data {
     //public int feednum;//輸入資料庫的資料不要號碼
     public String date;//日期
     public String time;//時間
-    public int mothermilk;
-    public int formula;
-    public int weaning;
-    public  Feed_Data(String date,String time, int mothermilk, int formula, int weaning)
+    public Double mothermilk;
+    public Double formula;
+    public Double weaning;
+    public int addtype;
+    public  Feed_Data(String date,String time, Double mothermilk, Double formula, Double weaning)
     {
 
         this.time = time;
@@ -19,6 +20,6 @@ public class Feed_Data {
         this.mothermilk = mothermilk;
         this.formula = formula;
         this.weaning = weaning;
-
+        this.addtype = 1;
     }
 }

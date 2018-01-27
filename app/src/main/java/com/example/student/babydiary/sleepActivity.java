@@ -2,11 +2,15 @@ package com.example.student.babydiary;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class sleepActivity extends AppCompatActivity {
     TextView tv6;
@@ -16,6 +20,7 @@ public class sleepActivity extends AppCompatActivity {
     private int mDay;
     private int mHour;
     private int mMinute;
+    private long   ut1;
     /*聲明声明对象变量*/
     TimePicker tp;
     DatePicker dp;
@@ -76,4 +81,31 @@ public class sleepActivity extends AppCompatActivity {
         if(s.length()==1) s="0"+s;
         return s;
     }
+
+    public void click_startsleep(View v)
+    {
+        //先行定義時間格式
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        //取得現在時間
+        Date startdt = new Date();
+        //透過SimpleDateFormat的format方法將Date轉為字串
+        //String dts = sdf.format(dt);
+        ut1 =startdt.getTime();
+
+    }
+    public void click_endsleep(View v)
+    {
+        Date enddt = new Date();
+        Long ut2=enddt.getTime();
+
+        long diff = ut1 - ut2;
+        long days = diff / (1000 * 60 * 60 * 24);
+        long hours = (diff-days*(1000 * 60 * 60 * 24))/(1000* 60 * 60);
+        long minutes = (diff-days*(1000 * 60 * 60 * 24)-hours*(1000* 60 * 60))/(1000* 60);
+        Log.d("TIMMMMME",""+days+"天"+hours+"小时"+minutes+"分");
+
+    }
+
+
+
 }

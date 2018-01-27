@@ -22,7 +22,8 @@
         <activity android:name=".FeedActivity" />
         <activity android:name=".sleepActivity" />
         <activity android:name=".growActivity" />
-        <activity android:name=".edfeedActivity"></activity>
+        <activity android:name=".edfeedActivity" />
+        <activity android:name=".edgrowActivity"></activity>
     </application>
 
 </manifest>

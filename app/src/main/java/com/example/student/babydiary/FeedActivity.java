@@ -109,8 +109,8 @@ public class FeedActivity extends AppCompatActivity {
 
         //feednum = feednum + 1;
 
-        Feed_Data feed_data = new Feed_Data(date,time ,Integer.valueOf(inputMK.getText().toString()),
-                Integer.valueOf(inputformula.getText().toString()),Integer.valueOf(inputWeaning.getText().toString()));
+        Feed_Data feed_data = new Feed_Data(date,time ,Double.valueOf(inputMK.getText().toString()),
+                Double.valueOf(inputformula.getText().toString()),Double.valueOf(inputWeaning.getText().toString()));
 
         Feed_DataDAO dao = new Feed_DataDAO(FeedActivity.this);
         dao.addfeed(feed_data);

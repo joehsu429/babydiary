@@ -26,17 +26,19 @@ public class edfeedActivity extends AppCompatActivity {
         feednum = it.getIntExtra("feednum",0);
 
     }
-
+    /*
     @Override
+
     protected void onResume() {
         super.onResume();
         s = Main7Activity.dao.getfeed(feednum);
         edmk.setText(String.valueOf(s.mothermilk));
         edformu.setText(String.valueOf(s.formula));
         edwean.setText(String.valueOf(s.weaning));
-
     }
+    */
 
+    /*
     //按下修改feed資料
     public void clickalter(View v)
     {
@@ -46,7 +48,9 @@ public class edfeedActivity extends AppCompatActivity {
         Main7Activity.dao.alterfeed(s1);
         finish();
     }
+    */
 
+    /*
     //按下刪除feed資料
     public void clickdelete(View v)
     {
@@ -69,5 +73,6 @@ public class edfeedActivity extends AppCompatActivity {
 
         builder.show();
     }
+    */
 
 }

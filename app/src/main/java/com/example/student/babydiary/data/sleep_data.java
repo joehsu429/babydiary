@@ -5,7 +5,9 @@ package com.example.student.babydiary.data;
  */
 
 public class sleep_data {
-    int sleepnum;
+
+    public String date;//日期
+    public String time;//時間
     double sleeplength;
     int personid;
 //    date recordtime;
@@ -15,7 +17,7 @@ public class sleep_data {
 
     public sleep_data(int sleepnum, double sleeplength, int personid)
     {
-        this.sleepnum=sleepnum;
+
         this.sleeplength=sleeplength;
         this.personid=personid;
     }
