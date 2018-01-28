@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.example.student.babydiary.data.AlldataDAO;
 import com.example.student.babydiary.data.Feed_Data;
 import com.example.student.babydiary.data.Feed_DataDAO;
 
@@ -112,7 +113,7 @@ public class FeedActivity extends AppCompatActivity {
         Feed_Data feed_data = new Feed_Data(date,time ,Double.valueOf(inputMK.getText().toString()),
                 Double.valueOf(inputformula.getText().toString()),Double.valueOf(inputWeaning.getText().toString()));
 
-        Feed_DataDAO dao = new Feed_DataDAO(FeedActivity.this);
+        AlldataDAO dao = new AlldataDAO(FeedActivity.this);
         dao.addfeed(feed_data);
     }
 }

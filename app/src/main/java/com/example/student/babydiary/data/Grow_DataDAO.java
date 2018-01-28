@@ -82,7 +82,7 @@ public class Grow_DataDAO {
         cv.put("headlength",s.headlength);
 
         db.update("badydata",cv,"_id=?",
-                new String[]{String.valueOf(s.grownum)});
+                new String[]{String.valueOf(s.id)});
         return true;
     }
 

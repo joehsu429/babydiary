@@ -12,7 +12,7 @@ import com.example.student.babydiary.data.Feed_DataOutout;
 
 public class edfeedActivity extends AppCompatActivity {
     EditText edmk,edformu,edwean;
-    int feednum;
+    int id;
     Feed_DataOutout s;
 
     @Override
@@ -23,34 +23,34 @@ public class edfeedActivity extends AppCompatActivity {
         edwean = (EditText)findViewById(R.id.edfeed_edweaning);
         edformu = (EditText)findViewById(R.id.feed_edformula);
         Intent it = getIntent();
-        feednum = it.getIntExtra("feednum",0);
+        id = it.getIntExtra("id",0);
 
     }
-    /*
-    @Override
 
+    @Override
+    //自動帶入點選的數字
     protected void onResume() {
         super.onResume();
-        s = Main7Activity.dao.getfeed(feednum);
+        s = Main7Activity.dao.getfeed(id);
         edmk.setText(String.valueOf(s.mothermilk));
         edformu.setText(String.valueOf(s.formula));
         edwean.setText(String.valueOf(s.weaning));
     }
-    */
 
-    /*
+
+
     //按下修改feed資料
     public void clickalter(View v)
     {
-        Feed_DataOutout s1 = new Feed_DataOutout(feednum , s.date,s.time,Integer.valueOf(edmk.getText().toString()),
-                Integer.valueOf(edformu.getText().toString()),Integer.valueOf(edwean.getText().toString()));
+        Feed_DataOutout s1 = new Feed_DataOutout(id , s.date,s.time,Double.valueOf(edmk.getText().toString()),
+                Double.valueOf(edformu.getText().toString()),Double.valueOf(edwean.getText().toString()),s.addtype);
 
         Main7Activity.dao.alterfeed(s1);
         finish();
     }
-    */
 
-    /*
+
+
     //按下刪除feed資料
     public void clickdelete(View v)
     {
@@ -60,7 +60,7 @@ public class edfeedActivity extends AppCompatActivity {
         builder.setPositiveButton("確認", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Main7Activity.dao.deletefeed(feednum);
+                Main7Activity.dao.deletefeed(id);
                 finish();
             }
         });
@@ -73,6 +73,6 @@ public class edfeedActivity extends AppCompatActivity {
 
         builder.show();
     }
-    */
+
 
 }

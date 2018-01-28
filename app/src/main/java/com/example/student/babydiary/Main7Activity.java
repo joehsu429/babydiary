@@ -39,12 +39,13 @@ public class Main7Activity extends AppCompatActivity {
                 {
                     Intent it = new Intent(Main7Activity.this,edfeedActivity.class);
                     //用putExtra把資料送出到edfeedactivity
-                    it.putExtra("feednum",dao.getList().get(i).id);
+                    it.putExtra("id",dao.getList().get(i).id);
                     startActivity(it);
                 }
                 else if (dao.getList().get(i).addtype == 2)
                 {
                     Intent it = new Intent(Main7Activity.this,edgrowActivity.class);
+                    it.putExtra("id",dao.getList().get(i).id);
                     startActivity(it);
                 }
 
