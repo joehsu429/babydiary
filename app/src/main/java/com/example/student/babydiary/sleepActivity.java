@@ -1,19 +1,38 @@
 package com.example.student.babydiary;
 
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.example.student.babydiary.data.AlldataDAO;
+import com.example.student.babydiary.data.Feed_Data;
+import com.example.student.babydiary.data.Sleep_Data;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class sleepActivity extends AppCompatActivity {
     TextView tv6;
+
+    private TextView timer;
+    private Button start;
+    private Button stop;
+    private Button zero;
+    private Button end;
+    private boolean startflag=false;
+    private int tsec=0,csec=0,cmin=0;
+
+
     /*声明日期及时间变量*/
     private int mYear;
     private int mMonth;
@@ -21,6 +40,8 @@ public class sleepActivity extends AppCompatActivity {
     private int mHour;
     private int mMinute;
     private long   ut1;
+    public String date;
+    public String time;
     /*聲明声明对象变量*/
     TimePicker tp;
     DatePicker dp;
@@ -28,6 +49,30 @@ public class sleepActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sleep);
+        timer = (TextView)findViewById(R.id.timer);
+        start = (Button)findViewById(R.id.start);
+        stop = (Button)findViewById(R.id.stop);
+        zero = (Button)findViewById(R.id.zero);
+        end = (Button)findViewById(R.id.end);
+
+
+
+
+
+        //宣告Timer
+        Timer timer01 =new Timer();
+        //設定Timer(task為執行內容，0代表立刻開始,間格1秒執行一次)
+        timer01.schedule(task, 0,1000);
+        //Button監聽
+        start.setOnClickListener(listener);
+        stop.setOnClickListener(listener);
+        zero.setOnClickListener(listener);
+        end.setOnClickListener(listener);
+
+
+
+
+
         /*取得目前日期与时间*/
         Calendar c=Calendar.getInstance();
         mYear=c.get(Calendar.YEAR);
@@ -62,6 +107,14 @@ public class sleepActivity extends AppCompatActivity {
             }
         });
 
+        //日期和時間的格式 存到資料庫用
+
+        date = new StringBuilder().append(mYear).append("/")
+                .append(format(mMonth + 1)).append("/")
+                .append(format(mDay)).toString();
+        time = new StringBuilder().append(format(mHour)).append(":")
+                .append(format(mMinute)).toString();
+
 
     }
     /*设置显示日期时间的方法*/
@@ -82,30 +135,96 @@ public class sleepActivity extends AppCompatActivity {
         return s;
     }
 
-    public void click_startsleep(View v)
+
+
+    private Handler handler = new Handler(){
+        public  void  handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch(msg.what){
+                case 1:
+                    csec=tsec%60;
+                    cmin=tsec/60;
+                    String s="";
+                    if(cmin <10){
+                        s="0"+cmin;
+                    }else{
+                        s=""+cmin;
+                    }
+                    if(csec < 10){
+                        s=s+":0"+csec;
+                    }else{
+                        s=s+":"+csec;
+                    }
+                    //s字串為00:00格式
+                    timer.setText(s);
+                    break;
+            }
+        }
+    };
+
+
+    private TimerTask task = new TimerTask(){
+        @Override
+        public void run() {
+            // TODO Auto-generated method stub
+            if (startflag){
+            //如果startflag是true則每秒tsec+1
+                tsec++;
+                Message message = new Message();
+                //傳送訊息1
+                message.what =1;
+                handler.sendMessage(message);
+            }
+        }
+    };
+
+    private View.OnClickListener listener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            switch(view.getId()){
+                case R.id.start:
+                    startflag=true;
+                    break;
+                case R.id.stop:
+                    startflag=false;
+                    break;
+                case R.id.zero:
+                    tsec=0;
+                //TextView 初始化
+                    timer.setText("00:00");
+                    break;
+                case R.id.end:
+                    finish();
+                    break;
+            }
+        }
+    };
+
+    public void clicksave(View v)
     {
-        //先行定義時間格式
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        //取得現在時間
-        Date startdt = new Date();
-        //透過SimpleDateFormat的format方法將Date轉為字串
-        //String dts = sdf.format(dt);
-        ut1 =startdt.getTime();
+
+
+        //按下儲存的時候在取一次時間
+        Calendar c2 =Calendar.getInstance();
+        mYear=c2.get(Calendar.YEAR);
+        mMonth=c2.get(Calendar.MONTH);
+        mDay=c2.get(Calendar.DAY_OF_MONTH);
+        mHour=c2.get(Calendar.HOUR_OF_DAY);
+        mMinute=c2.get(Calendar.MINUTE);
+        String endtime = new StringBuilder().append(format(mHour)).append(":")
+                .append(format(mMinute)).toString();
+        String  startsleeep = time;
+        String  endsleep = endtime;
+
+
+
+
+        Sleep_Data sleep_data = new Sleep_Data(date,time ,startsleeep,
+                endsleep,timer.getText().toString());
+
+        AlldataDAO dao = new AlldataDAO(sleepActivity.this);
+        dao.addsleep(sleep_data);
 
     }
-    public void click_endsleep(View v)
-    {
-        Date enddt = new Date();
-        Long ut2=enddt.getTime();
-
-        long diff = ut1 - ut2;
-        long days = diff / (1000 * 60 * 60 * 24);
-        long hours = (diff-days*(1000 * 60 * 60 * 24))/(1000* 60 * 60);
-        long minutes = (diff-days*(1000 * 60 * 60 * 24)-hours*(1000* 60 * 60))/(1000* 60);
-        Log.d("TIMMMMME",""+days+"天"+hours+"小时"+minutes+"分");
-
-    }
-
-
 
 }

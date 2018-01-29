@@ -24,7 +24,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
         //sqLiteDatabase.execSQL("CREATE TABLE `grow_data` ( `_grownum` INTEGER PRIMARY KEY AUTOINCREMENT, `date` TEXT,`time` TEXT, `tall` INTEGER, `weight` INTEGER, `headlength` INTEGER )");
         sqLiteDatabase.execSQL("CREATE TABLE `badydata` ( `_id` INTEGER PRIMARY KEY AUTOINCREMENT, `date` TEXT,`time` TEXT,`mothermilk` NUMERIC, `formula` NUMERIC, `weaning` NUMERIC, " +
                 "`tall` NUMERIC, `weight` NUMERIC, `headlength` NUMERIC," +
-                "`startsleep` NUMERIC,`endsleep` NUMERIC, `sleeptime` NUMERIC,`addtype` INTEGER)");
+                "`startsleep` TEXT,`endsleep` TEXT, `sleeptime` TEXT,`addtype` INTEGER)");
     }
 
 

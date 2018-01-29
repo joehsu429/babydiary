@@ -8,22 +8,22 @@ import java.util.ArrayList;
 
 public class sleep_dataDAO implements sleepDAO {
     @Override
-    public boolean add(sleep_data s) {
+    public boolean add(Sleep_Data s) {
         return false;
     }
 
     @Override
-    public ArrayList<sleep_data> getList() {
+    public ArrayList<Sleep_Data> getList() {
         return null;
     }
 
     @Override
-    public sleep_data getsleep_data(int id) {
+    public Sleep_Data getsleep_data(int id) {
         return null;
     }
 
     @Override
-    public boolean update(sleep_data s) {
+    public boolean update(Sleep_Data s) {
         return false;
     }
 

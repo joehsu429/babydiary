@@ -41,15 +41,15 @@ public class AlldataDAO {
 
     public ArrayList<Outputdata> getList() {
         ArrayList<Outputdata> mylist = new ArrayList<>();
-        Cursor c = db.query("badydata", new String[] {"_id", "date","time", "mothermilk","formula","weaning","tall","weight","headlength","addtype"}, null, null, null, null, null);
+        Cursor c = db.query("badydata", new String[] {"_id", "date","time", "mothermilk","formula","weaning","tall","weight","headlength","startsleep","endsleep","sleeptime","addtype"}, null, null, null, null, null);
         if (c.moveToFirst())
         {
-            Outputdata s1 = new Outputdata(c.getInt(0),c.getString(1),c.getString(2),c.getDouble(3),c.getDouble(4),c.getDouble(5),c.getDouble(6),c.getDouble(7),c.getDouble(8),c.getInt(9));
+            Outputdata s1 = new Outputdata(c.getInt(0),c.getString(1),c.getString(2),c.getDouble(3),c.getDouble(4),c.getDouble(5),c.getDouble(6),c.getDouble(7),c.getDouble(8),c.getString(9),c.getString(10),c.getString(11),c.getInt(12));
 
             mylist.add(s1);
             while(c.moveToNext())
             {
-                Outputdata  s = new Outputdata(c.getInt(0),c.getString(1),c.getString(2),c.getDouble(3),c.getDouble(4),c.getDouble(5),c.getDouble(6),c.getDouble(7),c.getDouble(8),c.getInt(9));
+                Outputdata  s =  new Outputdata(c.getInt(0),c.getString(1),c.getString(2),c.getDouble(3),c.getDouble(4),c.getDouble(5),c.getDouble(6),c.getDouble(7),c.getDouble(8),c.getString(9),c.getString(10),c.getString(11),c.getInt(12));
                 mylist.add(s);
             }
         }
@@ -128,6 +128,25 @@ public class AlldataDAO {
         db.delete("badydata","_id=?",new String[]{String.valueOf(id)});
         return true;
     }
+
+
+    //新增睡覺資料
+    public boolean addsleep(Sleep_Data s)
+    {
+        ContentValues cv = new ContentValues();
+
+        //cv.put("_feednum",s.feednum);//輸入資料庫的資料不要號碼
+        cv.put("date",s.date);
+        cv.put("time",s.time);
+        cv.put("startsleep",s.startsleep);
+        cv.put("endsleep",s.endsleep);
+        cv.put("sleeptime",s.sleeptime);
+        cv.put("addtype",s.addtype);
+        db.insert("badydata",null,cv);
+        db.close();
+        return true;
+    }
+
 
 
 }

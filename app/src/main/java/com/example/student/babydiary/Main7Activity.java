@@ -83,6 +83,21 @@ public class Main7Activity extends AppCompatActivity {
         return contextstr;
     }
 
+    //設定sleep的顯示內容
+    public String setsleepcontext(int i)
+    {
+        String timestr = dao.getList().get(i).sleeptime; //取睡覺的時間
+        String[] str = timestr.split(":");//剖析分鐘的部分
+        int s = Integer.valueOf(str[0]);//轉整數去掉前面的0
+        String contextstr;
+        contextstr = "寶寶睡覺 " + dao.getList().get(i).startsleep + "" + "\n" +
+                "寶寶起床 " + dao.getList().get(i).endsleep +  "" + "\n" +
+                "總共睡了 " + s +  "分鐘";
+        return contextstr;
+    }
+
+
+
     //自訂baseadapter 給listview用
     class Myadapter extends BaseAdapter{
 
@@ -119,6 +134,11 @@ public class Main7Activity extends AppCompatActivity {
             else if (dao.getList().get(i).addtype == 2)
             {
                 setcontext.setText(setgrowcontext(i));
+            }
+
+            else if (dao.getList().get(i).addtype == 3)
+            {
+                setcontext.setText(setsleepcontext(i));
             }
 
 
