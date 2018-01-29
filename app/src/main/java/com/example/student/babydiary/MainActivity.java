@@ -2,13 +2,16 @@ package com.example.student.babydiary;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -18,10 +21,11 @@ import java.util.Calendar;
 public class MainActivity extends AppCompatActivity{
     TextView tv,tv2,tv3,tv4;
     EditText ed,ed2;
-    Spinner sp;
     Calendar c;
+    Button btn2;
+    ImageView imageView;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         tv = new TextView(this);
@@ -30,7 +34,6 @@ public class MainActivity extends AppCompatActivity{
         tv4 = new TextView(this);
         ed2 = (EditText) findViewById(R.id.editText_Birthday);
         ed2.setInputType(InputType.TYPE_NULL);
-
         ed2.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 
             @Override
@@ -66,12 +69,13 @@ public class MainActivity extends AppCompatActivity{
 
             }
         });
-    }
 
+    }
     public void click1(View v)
     {
-        Intent it = new Intent(this,Main2Activity.class);//跳第2頁
+        Intent it = new Intent(this,Main2Activity.class);
         startActivity(it);
     }
 
 }
+
