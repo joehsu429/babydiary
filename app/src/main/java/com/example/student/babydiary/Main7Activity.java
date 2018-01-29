@@ -3,6 +3,7 @@ package com.example.student.babydiary;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,6 +49,12 @@ public class Main7Activity extends AppCompatActivity {
                     it.putExtra("id",dao.getList().get(i).id);
                     startActivity(it);
                 }
+                else if (dao.getList().get(i).addtype == 3)
+                {
+                    Intent it = new Intent(Main7Activity.this,edsleepActivity.class);
+                    it.putExtra("id",dao.getList().get(i).id);
+                    startActivity(it);
+                }
 
 
             }
@@ -88,11 +95,13 @@ public class Main7Activity extends AppCompatActivity {
     {
         String timestr = dao.getList().get(i).sleeptime; //取睡覺的時間
         String[] str = timestr.split(":");//剖析分鐘的部分
-        int s = Integer.valueOf(str[0]);//轉整數去掉前面的0
+        int hr = Integer.valueOf(str[1]);//轉整數去掉前面的0
+        int m = Integer.valueOf(str[2]);//轉整數去掉前面的0
+
         String contextstr;
         contextstr = "寶寶睡覺 " + dao.getList().get(i).startsleep + "" + "\n" +
                 "寶寶起床 " + dao.getList().get(i).endsleep +  "" + "\n" +
-                "總共睡了 " + s +  "分鐘";
+                "總共睡了 " + hr + "小時"+ m + "分鐘";
         return contextstr;
     }
 

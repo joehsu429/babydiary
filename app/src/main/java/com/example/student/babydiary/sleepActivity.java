@@ -30,7 +30,7 @@ public class sleepActivity extends AppCompatActivity {
     private Button zero;
     private Button end;
     private boolean startflag=false;
-    private int tsec=0,csec=0,cmin=0;
+    private int tsec=0,csec=0,cmin=0,chr = 0;
 
 
     /*声明日期及时间变量*/
@@ -142,21 +142,42 @@ public class sleepActivity extends AppCompatActivity {
             super.handleMessage(msg);
             switch(msg.what){
                 case 1:
-                    csec=tsec%60;
-                    cmin=tsec/60;
-                    String s="";
-                    if(cmin <10){
-                        s="0"+cmin;
-                    }else{
-                        s=""+cmin;
+                    String msec,mmin, mhr,mdays,timecount;
+                    long days = tsec / ( 60 * 60 * 24);
+                    long hours = (tsec-days*( 60 * 60 * 24))/( 60 * 60);
+                    long minutes = (tsec-days*( 60 * 60 * 24)-hours*( 60 * 60))/(60);
+                    long sec = (tsec-days*( 60 * 60 * 24)-hours*( 60 * 60))%(60);
+
+                    //秒的格式
+                    if(sec < 10){
+                        msec = "0"+sec;
                     }
-                    if(csec < 10){
-                        s=s+":0"+csec;
-                    }else{
-                        s=s+":"+csec;
+                    else
+                    {
+                        msec = String.valueOf(sec);
                     }
+                    //分的格式
+                    if(minutes <10){
+                        mmin="0"+minutes;
+                    }else{
+                        mmin=""+minutes;
+                    }
+                    //小時的格式
+                    if(hours <10){
+                        mhr="0"+hours;
+                    }else{
+                        mhr=""+hours;
+                    }
+                    //天的格式
+                    if(days <10){
+                        mdays="0"+days;
+                    }else{
+                        mdays=""+days;
+                    }
+
+                    timecount = mdays+":" + mhr+":" + mmin+":"+msec;
                     //s字串為00:00格式
-                    timer.setText(s);
+                    timer.setText(timecount);
                     break;
             }
         }

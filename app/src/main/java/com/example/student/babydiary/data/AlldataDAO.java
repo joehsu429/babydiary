@@ -148,5 +148,59 @@ public class AlldataDAO {
     }
 
 
+    //找出一筆sleep的資料
+    public Sleep_DataOutput getsleep(int id)
+    {
+        Cursor c = db.query("badydata",new String[] {"_id", "date","time", "startsleep","endsleep","sleeptime","addtype"},"_id=?",
+                new String[] {String.valueOf(id)},null,null,null);
+        if (c.moveToFirst())
+        {
+            Sleep_DataOutput s = new Sleep_DataOutput(c.getInt(0),c.getString(1),c.getString(2),c.getString(3),c.getString(4),c.getString(5),c.getInt(6));
+            return s;
+        }
+        return null;
+    }
+
+    //修改sleep資料
+
+    public boolean altersleep(Sleep_DataOutput s)
+    {
+        ContentValues cv = new ContentValues();
+        cv.put("date",s.date);
+        cv.put("time",s.time);
+        cv.put("startsleep",s.startsleep);
+        cv.put("endsleep",s.endsleep);
+        cv.put("sleeptime",s.sleeptime);
+
+        db.update("badydata",cv,"_id=?",
+                new String[]{String.valueOf(s.sleepnum)});
+        return true;
+    }
+
+    //刪除sleep資料
+    public boolean deletesleep(int  id)
+    {
+        db.delete("badydata","_id=?",new String[]{String.valueOf(id)});
+        return true;
+    }
+
+
+
+
+    //新增寶寶資料
+    public boolean addbaby(Personal_Data s)
+    {
+        ContentValues cv = new ContentValues();
+
+
+        cv.put("name",s.name);
+        cv.put("gender",s.gender);
+        cv.put("birthday",s.birthday);
+        db.insert("personal_data",null,cv);
+        db.close();
+        return true;
+    }
+
+
 
 }

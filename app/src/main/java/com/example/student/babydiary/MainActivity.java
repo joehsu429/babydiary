@@ -122,9 +122,9 @@ public class MainActivity extends AppCompatActivity{
 
         Personal_DataDAO dao = new Personal_DataDAO(MainActivity.this);
 
-        //ID,姓名,性別代號,生日
-        int personalid = 1;
-        Personal_Data personal_data = new Personal_Data(personalid++,ed.getText().toString(),gender,ed2.getText().toString());
+        //姓名,性別代號,生日
+
+        Personal_Data personal_data = new Personal_Data(ed.getText().toString(),gender,ed2.getText().toString());
         //加入資料庫
         dao.addbaby(personal_data);
         //ed2 Birthday

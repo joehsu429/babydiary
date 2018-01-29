@@ -25,7 +25,7 @@ public class Personal_DataDAO {
     {
         ContentValues cv = new ContentValues();
 
-        cv.put("_personalid",s.personalid);
+
         cv.put("name",s.name);
         cv.put("gender",s.gender);
         cv.put("birthday",s.birthday);
@@ -35,7 +35,7 @@ public class Personal_DataDAO {
     }
 
     //修改寶寶資料
-    public boolean alterbabydata(Personal_Data  s)
+    public boolean alterbabydata(Personal_DataOutput  s)
     {
         ContentValues cv = new ContentValues();
         cv.put("name",s.name);
